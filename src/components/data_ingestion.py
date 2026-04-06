@@ -17,7 +17,7 @@ class DataIngestion:
         logging.info("Entered data ingestion method")
 
         try:
-            # Load ball-by-ball dataset
+           
             df = pd.read_csv("data/raw/IPL.csv", low_memory=False)
             logging.info("Raw ball-by-ball data loaded")
 
