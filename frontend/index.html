@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IPL Match Predictor</title>
+</head>
+<body>
+
+    <h1>🏏 IPL Match Winner Prediction</h1>
+
+    <label>Team 1:</label>
+    <select id="team1"></select><br><br>
+
+    <label>Team 2:</label>
+    <select id="team2"></select><br><br>
+
+    <label>Venue:</label>
+    <select id="venue"></select><br><br>
+
+    <label>Toss Winner:</label>
+    <select id="toss_winner"></select><br><br>
+
+    <label>Toss Decision:</label>
+    <select id="toss_decision"></select><br><br>
+
+    <button onclick="predictMatch()">Predict Winner</button>
+
+    <h2 id="result"></h2>
+
+<script>
+
+const BASE_URL = "http://localhost:3001";
+
+// ---------------- LOAD DROPDOWNS ---------------- //
+
+async function loadOptions() {
+    try {
+        const res = await fetch(`${BASE_URL}/metadata`, {
+            method: "GET"   // ✅ FIXED
+        });
+
+        if (!res.ok) throw new Error("Backend not responding");
+
+        const data = await res.json();
+
+        console.log("Metadata:", data);
+
+        const team1 = document.getElementById("team1");
+        const team2 = document.getElementById("team2");
+        const tossWinner = document.getElementById("toss_winner");
+        const venue = document.getElementById("venue");
+        const tossDecision = document.getElementById("toss_decision");
+
+        team1.innerHTML = "";
+        team2.innerHTML = "";
+        tossWinner.innerHTML = "";
+        venue.innerHTML = "";
+        tossDecision.innerHTML = "";
+
+        data.teams.forEach(team => {
+            team1.innerHTML += `<option value="${team}">${team}</option>`;
+            team2.innerHTML += `<option value="${team}">${team}</option>`;
+            tossWinner.innerHTML += `<option value="${team}">${team}</option>`;
+        });
+
+        data.venues.forEach(v => {
+            venue.innerHTML += `<option value="${v}">${v}</option>`;
+        });
+
+        data.toss_decision.forEach(t => {
+            tossDecision.innerHTML += `<option value="${t}">${t}</option>`;
+        });
+
+    } catch (error) {
+        alert("❌ Backend not reachable! Check port / CORS");
+        console.error(error);
+    }
+}
+
+// ---------------- PREDICT FUNCTION ---------------- //
+
+async function predictMatch() {
+    const payload = {
+        team1: document.getElementById("team1").value,
+        team2: document.getElementById("team2").value,
+        venue: document.getElementById("venue").value,
+        toss_winner: document.getElementById("toss_winner").value,
+        toss_decision: document.getElementById("toss_decision").value
+    };
+
+    try {
+        const res = await fetch("http://localhost:3001/predict", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        console.log("Response:", data); // debug
+
+        // ✅ ADD THIS PART HERE
+        if (data.error) {
+            document.getElementById("result").innerText = "Error: " + data.error;
+        } else {
+            document.getElementById("result").innerText =
+                "🏆 Predicted Winner: " + data.prediction;
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("Backend not reachable!");
+    }
+}
+
+// Load dropdowns on page load
+loadOptions();
+
+</script>
+
+</body>
+</html>

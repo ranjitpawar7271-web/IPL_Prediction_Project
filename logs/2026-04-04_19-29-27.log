@@ -1,0 +1,14 @@
+[ 2026-04-04 19:29:31,104 ] 13 root - INFO - Pipeline started
+[ 2026-04-04 19:29:31,104 ] 17 root - INFO - Entered data ingestion method
+[ 2026-04-04 19:29:32,155 ] 22 root - INFO - Raw ball-by-ball data loaded
+[ 2026-04-04 19:29:32,155 ] 25 root - INFO - Converting ball-by-ball to match-level data
+[ 2026-04-04 19:29:32,188 ] 43 root - INFO - Match-level dataset created
+[ 2026-04-04 19:29:32,193 ] 59 root - INFO - Train-test split completed
+[ 2026-04-04 19:29:32,210 ] 31 root - INFO - Starting data validation
+[ 2026-04-04 19:29:32,211 ] 18 root - INFO - Validating required columns
+[ 2026-04-04 19:29:32,212 ] 42 root - INFO - Data validation passed
+[ 2026-04-04 19:29:32,212 ] 20 root - INFO - Starting data transformation
+[ 2026-04-04 19:29:32,215 ] 58 root - INFO - Data transformation completed
+[ 2026-04-04 19:29:32,215 ] 19 root - INFO - Starting model training
+[ 2026-04-04 19:29:32,290 ] 34 root - INFO - Model training completed
+[ 2026-04-04 19:29:32,301 ] 42 root - INFO - Model saved

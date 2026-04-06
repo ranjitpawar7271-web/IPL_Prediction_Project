@@ -1,0 +1,5 @@
+[ 2026-04-04 18:27:24,052 ] 15 root - INFO - Pipeline started
+[ 2026-04-04 18:27:24,053 ] 17 root - INFO - Entered data ingestion method
+[ 2026-04-04 18:27:24,697 ] 22 root - INFO - Read the dataset successfully
+[ 2026-04-04 18:27:26,202 ] 29 root - INFO - Stored raw data in artifact folder
+[ 2026-04-04 18:27:27,851 ] 39 root - INFO - Train-test split completed

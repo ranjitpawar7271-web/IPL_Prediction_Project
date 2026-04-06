@@ -1,0 +1,9 @@
+venv/
+ipl_env/
+__pycache__/
+*.pyc
+*.pkl
+artifacts/
+bentoml/
+.env
+.DS_Store
