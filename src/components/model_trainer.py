@@ -25,7 +25,7 @@ class ModelTrainer:
             X_train, y_train_raw = train_arr[:, :-1], train_arr[:, -1]
             X_test, y_test_raw = test_arr[:, :-1], test_arr[:, -1]
 
-            # 🔥 Convert to binary classification (team1 vs team2)
+          
             y_train = (y_train_raw == X_train[:, 0]).astype(int)
             y_test = (y_test_raw == X_test[:, 0]).astype(int)
 
